@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Question;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class QuestionsController extends Controller
 {
@@ -12,8 +13,9 @@ class QuestionsController extends Controller
      */
     public function index()
     {
-        $questions = Question::latest()->paginate(5);
+        $questions = Question::with('user')->latest()->paginate(10);
 
+        // Return the view with the questions data
         return view('questions.index', compact('questions'));
     }
 

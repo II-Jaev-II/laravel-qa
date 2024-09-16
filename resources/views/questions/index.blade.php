@@ -6,17 +6,24 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-12 mx-auto sm:px-6 lg:px-8">
-            <div class="dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     @foreach ($questions as $question)
                         <div class="media">
                             <div class="media-body">
-                                <h3 class="mt-0">{{ $question->title }}</h3>
-                                {{ str_limit($question->body, 250) }}
+                                <p class="text-xl font-medium text-sky-400 dark:text-sky-400 hover:underline">
+                                    <a href="{{ $question->url }}">{{ $question->title }}</a>
+                                </p>
+                                <p class="lead mb-4">
+                                    Asked by
+                                    <a class="text-sky-400 dark:text-sky-400 hover:underline" href="{{ $question->user->url }}">{{ $question->user->name }}</a>
+                                    <small class="text-gray-600 dark:text-gray-400">{{ $question->created_date }}</small>
+                                </p>
+                                {{ Str_limit($question->body, 250) }}
                             </div>
                         </div>
-                        <hr>
+                        <hr class="my-4 border-gray-200 dark:border-gray-600">
                     @endforeach
                     <div class="mt-2">
                         {{ $questions->links() }}
