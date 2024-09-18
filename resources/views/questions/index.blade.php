@@ -10,15 +10,42 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     @foreach ($questions as $question)
-                        <div class="media">
+                        <div class="media flex place-items-start">
+                            <div class="flex flex-col text-center mr-4 space-y-2 w-24">
+                                <div class="vote text-sm">
+                                    <div class="font-bold text-lg">
+                                        {{ $question->votes }}
+                                    </div>
+                                    <div>
+                                        {{ Str_plural('vote', $question->votes) }}
+                                    </div>
+                                </div>
+                                <div class="status text-sm
+                                    @if ($question->status === 'answered') border border-green-500 text-green-500
+                                    @elseif($question->status === 'answered-accepted') border border-green-500 bg-green-100
+                                    @else border border-gray-500 @endif">
+                                        <div class="font-bold text-lg">
+                                            {{ $question->answers }}
+                                        </div>
+                                        <div>
+                                            {{ Str::plural('answer', $question->answers) }}
+                                        </div>
+                                </div>
+                                <div class="view text-xs">
+                                    {{ $question->views . ' ' . Str_plural('view', $question->views) }}
+                                </div>
+                            </div>
+
                             <div class="media-body">
                                 <p class="text-xl font-medium text-sky-400 dark:text-sky-400 hover:underline">
                                     <a href="{{ $question->url }}">{{ $question->title }}</a>
                                 </p>
                                 <p class="lead mb-4">
                                     Asked by
-                                    <a class="text-sky-400 dark:text-sky-400 hover:underline" href="{{ $question->user->url }}">{{ $question->user->name }}</a>
-                                    <small class="text-gray-600 dark:text-gray-400">{{ $question->created_date }}</small>
+                                    <a class="text-sky-400 dark:text-sky-400 hover:underline"
+                                        href="{{ $question->user->url }}">{{ $question->user->name }}</a>
+                                    <small
+                                        class="text-gray-600 dark:text-gray-400">{{ $question->created_date }}</small>
                                 </p>
                                 {{ Str_limit($question->body, 250) }}
                             </div>
