@@ -20,10 +20,10 @@
                         @csrf
                         <div class="block mb-4">
                             <label for="question-title">Question Title</label>
-                            <input type="text" id="question-title"
+                            <input type="text" name="title" value="{{ old('title') }}" id="question-title"
                                 class="block w-full flex rounded-md dark:bg-gray-600 my-2 {{ $errors->has('title') ? 'border-red-500' : '' }}">
                             @if ($errors->has('title'))
-                                <div class="invalid:border-red-500">
+                                <div class="text-red-500 mt-1">
                                     <strong>{{ $errors->first('title') }}</strong>
                                 </div>
                             @endif
@@ -31,7 +31,7 @@
                         <div class="block mb-4">
                             <label for="question-body">Explain your question</label>
                             <textarea class="block w-full flex rounded-md dark:bg-gray-700 my-2 {{ $errors->has('body') ? 'border-red-500' : '' }}"
-                                name="questionBody" id="question-body" cols="30" rows="10"></textarea>
+                                name="body" id="question-body" cols="30" rows="10">{{ old('body') }}</textarea>
                             @if ($errors->has('body'))
                                 <div class="text-red-500 mt-1">
                                     <strong>{{ $errors->first('body') }}</strong>
