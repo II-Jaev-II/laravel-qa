@@ -1,8 +1,13 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            All Questions
-        </h2>
+        <div class="flex items-center">
+            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+                All Questions
+            </h2>
+            <div class="ml-auto">
+                <a href="{{ route('questions.create') }}" class="border rounded-md border-gray-600 dark:border-gray-400 dark:text-white hover:bg-gray-500 active:bg-gray-600 hover:text-white dark:hover:bg-gray-600 dark:active:bg-gray-500 px-4 py-2">Ask Question</a>
+            </div>
+        </div>
     </x-slot>
 
     <div class="py-12">
@@ -10,7 +15,7 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     @foreach ($questions as $question)
-                        <div class="media flex place-items-start">
+                        <div class="media flex items-start">
                             <div class="flex flex-col text-center mr-4 space-y-2 w-24">
                                 <div class="vote text-sm">
                                     <div class="font-bold text-lg">
@@ -20,16 +25,17 @@
                                         {{ Str_plural('vote', $question->votes) }}
                                     </div>
                                 </div>
-                                <div class="status text-sm
+                                <div
+                                    class="status text-sm
                                     @if ($question->status === 'answered') border border-green-500 text-green-500
                                     @elseif($question->status === 'answered-accepted') border border-green-500 bg-green-100
                                     @else border border-gray-500 @endif">
-                                        <div class="font-bold text-lg">
-                                            {{ $question->answers }}
-                                        </div>
-                                        <div>
-                                            {{ Str::plural('answer', $question->answers) }}
-                                        </div>
+                                    <div class="font-bold text-lg">
+                                        {{ $question->answers }}
+                                    </div>
+                                    <div>
+                                        {{ Str::plural('answer', $question->answers) }}
+                                    </div>
                                 </div>
                                 <div class="view text-xs">
                                     {{ $question->views . ' ' . Str_plural('view', $question->views) }}

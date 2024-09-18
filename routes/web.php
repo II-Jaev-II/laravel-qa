@@ -16,5 +16,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/questions', [QuestionsController::class, 'index'])->name('questions.index');
+Route::get('/questions-create', [QuestionsController::class, 'create'])->name('questions.create');
+Route::post('/questions-store', [QuestionsController::class, 'store'])->name('questions.store');
 
 require __DIR__.'/auth.php';
