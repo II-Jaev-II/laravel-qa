@@ -20,5 +20,6 @@ Route::get('/questions-create', [QuestionsController::class, 'create'])->name('q
 Route::post('/questions-store', [QuestionsController::class, 'store'])->name('questions.store');
 Route::get('/questions-edit/{id}', [QuestionsController::class, 'edit'])->name('questions.edit');
 Route::put('/questions-update/{question}', [QuestionsController::class, 'update'])->name('questions.update');
+Route::delete('/questions-destroy/{question}', [QuestionsController::class, 'destroy'])->name('questions.destroy');
 
 require __DIR__.'/auth.php';

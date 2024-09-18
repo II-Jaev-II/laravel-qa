@@ -47,11 +47,19 @@
 
                             <div class="media-body">
                                 <div class="flex items-center">
-                                    <p class="text-xl font-medium text-sky-400 dark:text-sky-400 hover:underline">
+                                    <p class="text-xl font-medium text-sky-400 dark:text-sky-400 hover:underline mr-2">
                                         <a href="{{ $question->url }}">{{ $question->title }}</a>
                                     </p>
-                                    <div class="ml-auto">
-                                        <a href="{{ route('questions.edit', $question->id) }}" class="border rounded-md border-sky-400 text-sky-400 hover:bg-sky-600 hover:text-white active:bg-sky-400 dark:text-sky-400 dark:border-sky-400 dark:hover:bg-sky-600 dark:hover:text-white dark:active:bg-sky-400 px-4 py-2">Edit</a>
+                                    <div class="ml-auto flex space-x-2">
+                                        <a href="{{ route('questions.edit', $question->id) }}"
+                                            class="border rounded-md border-sky-400 text-sky-400 hover:bg-sky-600 hover:text-white active:bg-sky-400 dark:text-sky-400 dark:border-sky-400 dark:hover:bg-sky-600 dark:hover:text-white dark:active:bg-sky-400 px-4 py-2">Edit</a>
+                                        <form action="{{ route('questions.destroy', $question->id) }}" method="post">
+                                            @method('DELETE')
+                                            @csrf
+                                            <button type="submit"
+                                                class="border rounded-md border-red-400 text-red-400 hover:bg-red-600 hover:text-white active:bg-red-400 dark:text-red-400 dark:border-red-400 dark:hover:bg-red-600 dark:hover:text-white dark:active:bg-red-400 px-4 py-2"
+                                                onclick="return confirm('Are you sure?')">Delete</button>
+                                        </form>
                                     </div>
                                 </div>
                                 <p class="lead mb-4">
