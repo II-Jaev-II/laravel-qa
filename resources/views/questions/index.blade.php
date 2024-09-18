@@ -46,9 +46,14 @@
                             </div>
 
                             <div class="media-body">
-                                <p class="text-xl font-medium text-sky-400 dark:text-sky-400 hover:underline">
-                                    <a href="{{ $question->url }}">{{ $question->title }}</a>
-                                </p>
+                                <div class="flex items-center">
+                                    <p class="text-xl font-medium text-sky-400 dark:text-sky-400 hover:underline">
+                                        <a href="{{ $question->url }}">{{ $question->title }}</a>
+                                    </p>
+                                    <div class="ml-auto">
+                                        <a href="{{ route('questions.edit', $question->id) }}" class="border rounded-md border-sky-400 text-sky-400 hover:bg-sky-600 hover:text-white active:bg-sky-400 dark:text-sky-400 dark:border-sky-400 dark:hover:bg-sky-600 dark:hover:text-white dark:active:bg-sky-400 px-4 py-2">Edit</a>
+                                    </div>
+                                </div>
                                 <p class="lead mb-4">
                                     Asked by
                                     <a class="text-sky-400 dark:text-sky-400 hover:underline"

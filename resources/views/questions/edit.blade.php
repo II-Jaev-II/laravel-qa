@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="flex items-center">
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                Ask Question
+                Edit Question
             </h2>
             <div class="ml-auto">
                 <a href="{{ route('questions.index') }}"
@@ -16,8 +16,9 @@
         <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-4 text-gray-900 dark:text-gray-100">
-                    <form action="{{ route('questions.store') }}" method="post">
-                        @include("questions.form", ['buttonText' => "Ask this question"])
+                    <form action="{{ route('questions.update', $question->id) }}" method="post">
+                        {{ method_field('PUT') }}
+                        @include('questions.form', ['buttonText' => 'Update question'])
                     </form>
                 </div>
             </div>

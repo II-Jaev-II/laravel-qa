@@ -51,17 +51,21 @@ class QuestionsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Question $question)
+    public function edit(Question $question, $id)
     {
-        //
+        $question = Question::findOrFail($id);
+
+        return view("questions.edit", compact('question'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Question $question)
+    public function update(AskQuestionRequest $request, Question $question)
     {
-        //
+        $question->update($request->only('title', 'body'));
+
+        return redirect('/questions')->with('success', "Your question has been updated.");
     }
 
     /**
