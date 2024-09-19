@@ -2,12 +2,12 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QuestionsController;
+use App\Models\Question;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
-
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -22,4 +22,10 @@ Route::get('/questions-edit/{id}', [QuestionsController::class, 'edit'])->name('
 Route::put('/questions-update/{question}', [QuestionsController::class, 'update'])->name('questions.update');
 Route::delete('/questions-destroy/{question}', [QuestionsController::class, 'destroy'])->name('questions.destroy');
 
-require __DIR__.'/auth.php';
+Route::bind('slug', function ($slug) {
+    return Question::where('slug', $slug)->first() ?? abort(404);
+});
+
+Route::get('/questions/{slug}', [QuestionsController::class, 'show'])->name('questions.show');
+
+require __DIR__ . '/auth.php';
