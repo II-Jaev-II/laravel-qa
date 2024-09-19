@@ -34,10 +34,10 @@
                                     @elseif($question->status === 'answered-accepted') border border-green-500 bg-green-100
                                     @else border border-gray-500 @endif">
                                     <div class="font-bold text-lg">
-                                        {{ $question->answers }}
+                                        {{ $question->answers_count }}
                                     </div>
                                     <div>
-                                        {{ Str::plural('answer', $question->answers) }}
+                                        {{ Str::plural('answer', $question->answers_count) }}
                                     </div>
                                 </div>
                                 <div class="view text-xs">
