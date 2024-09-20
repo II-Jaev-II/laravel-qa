@@ -30,7 +30,7 @@
                                 </div>
                                 <div class="status md:text-sm
                                     @if ($question->status === 'answered') md:border border-green-500 text-green-500
-                                    @elseif($question->status === 'answered-accepted') md:border border-green-500 bg-green-100
+                                    @elseif($question->status === 'answered-accepted') md:border border-green-500 bg-green-400
                                     @else md:border border-gray-500 @endif">
                                     <div class="md:font-bold md:text-lg">
                                         {{ $question->answers_count }}

@@ -18,7 +18,8 @@
                                 <i class="fas fa-caret-down fa-3x text-gray-400 dark:text-red-400 cursor-pointer"></i>
                             </a>
                             <a title="Mark as the best answer">
-                                <i class="mt-4 fas fa-check fa-3x text-green-400  cursor-pointer w-8 h-8"></i>
+                                <i
+                                    class="mt-4 fas fa-check fa-3x text-green-400  cursor-pointer w-8 h-8 {{ $answer->status }}"></i>
                             </a>
                         </div>
                         <div class="p-4 text-gray-900 dark:text-gray-100 flex-1">
