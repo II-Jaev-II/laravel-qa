@@ -55,8 +55,14 @@ class AnswersController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Answer $answer)
+    public function destroy(Question $question, Answer $answer)
     {
-        //
+        if (Gate::denies('delete-answer', $answer)) {
+            abort(403, 'Access denied');
+        }
+
+        $answer->delete();
+
+        return back()->with('success', "You answer has been removed.");
     }
 }
