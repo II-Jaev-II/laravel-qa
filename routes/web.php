@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnswersController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QuestionsController;
 use App\Models\Question;
@@ -26,6 +27,8 @@ Route::middleware('auth')->group(function () {
         return Question::with('answers.user')->where('slug', $slug)->first() ?? abort(404);
     });
     Route::get('/questions/{slug}', [QuestionsController::class, 'show'])->name('questions.show');
+    Route::post('/questions/{question}/answers', [AnswersController::class, 'store'])->name('answers.store');
+    Route::resource('questions.answers', AnswersController::class)->except(['index', 'create', 'show']);
 });
 
 require __DIR__ . '/auth.php';
